@@ -45,13 +45,13 @@ for index, sample in enumerate(samples):
     imgFeatureDataFrame = pd.DataFrame(imgFeatures)
 
     imgDataFrames = pd.concat([imgDataFrames, imgDataFrame], axis=0, ignore_index=True)
-    imgDataFrames.reset_index()
+    imgDataFrames.to_csv('/Users/quentinducker/Documents/Spring 2024/ITS365/KNN Project/KNN/ImageCsv/imgData.csv')
 
     imgFeaturesDataFrames = pd.concat([imgFeaturesDataFrames, imgFeatureDataFrame], axis=0, ignore_index=True)
-    imgFeatureDataFrame.reset_index()
+    imgFeaturesDataFrames.to_csv('/Users/quentinducker/Documents/Spring 2024/ITS365/KNN Project/KNN/ImageFeatures/imgFeatures.csv')
 
+    print(index)
     print(imgDataFrames)
-    print()
     print()
     print()
     print()
@@ -75,8 +75,6 @@ for index, sample in enumerate(samples):
 
 # make csv's from the dataframes store them in the right directory
 
-allImgData = pd.concat(imgDataFrames, axis=1)
-allImgFeatures = pd.concat(imgFeaturesDataFrames, axis=1)
 
 allImgData.to_csv(r'/Users/quentinducker/Documents/Spring 2024/ITS365/KNN Project/KNN/ImageCsv/imgData.csv')
 allImgFeatures.to_csv(r'/Users/quentinducker/Documents/Spring 2024/ITS365/KNN Project/KNN/ImageFeatures/imgFeatures.csv')
