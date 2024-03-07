@@ -6,3 +6,6 @@ Features
 - is solid
 - numbr of colors
 - stray flames
+
+Image Data 
+- size is 360, 360, 4 its RGBA

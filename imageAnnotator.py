@@ -28,6 +28,7 @@ for index, sample in enumerate(samples):
 
     # show the image and ask questions
     img.show()
+    print(imgMatrix)
 
     numberOfPeaks = int(input("How many peaks (including inner layers) are?"))
     solid = int(input("is the flame solid?"))
@@ -36,6 +37,13 @@ for index, sample in enumerate(samples):
 
     # fatten img add it to the images dataframe
     # make array from answers and add it to the features dataframe 
+    print()
+    print()
+    print()
+    print()
+    print()
+    print()
+
     flatImg = imgMatrix.flatten().reshape((1, -1))
     
     imgFeatures = np.array([ [numberOfPeaks, solid, numberOfColors, numberOfStrayFlames] ])
