@@ -16,22 +16,24 @@
     <div class="d-flex flex-row flex-wrap">
         <div class="input-group">
             <label class="input-group-text">Peaks</label>
-            <input type="range" />
+            <input id="peaksInput" type="range" />
         </div>
 
         <div class="input-group">
             <label class="input-group-text">Solid</label>
-            <input type="range" />
+            <div class="form-check form-switch">
+                <input id="solidInput" class="form-check-input" type="checkbox" role="checkbox" />
+            </div>
         </div>
 
         <div class="input-group">
             <label class="input-group-text">Colors</label>
-            <input type="range" />
+            <input id="colorsInput" type="range" />
         </div>
 
         <div class="input-group" >
             <label class="input-group-text">Stray flames</label>
-            <input type="range" />
+            <input id="strayFlamesInput" type="range" />
         </div>
     </div>
 
@@ -54,8 +56,19 @@
         </py-config>
 
         <script type="py">
+            import matplotlib.pyplot as plt
+            import matplotlib.tri as tri
+            import numpy as np
+            import pandas as pd
+            from pyodide.http import open_url
+            from js import console
+            from mpl_toolkits.axes_grid1 import make_axes_locatable
             
+            imageDataURL = 'https://raw.githubusercontent.com/quentinducker/KNN/main/ImageCsv/imgData.csv'
+            imagesDataArray = pd.read_csv( open_url(imageDataURL) ).to_numpy()
 
+            imageFeatureURL = 'https://github.com/quentinducker/KNN/blob/main/ImageFeatures/imgFeatures.csv'
+            imageFeatureArray = pd.read_csv( open_url(imageFeatureURL) ).to_numpy()
         </script>
     </section>
 

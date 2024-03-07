@@ -3,6 +3,6 @@ initial commit
 
 Features
 - number of peaks
-- curvedBase
+- is solid
 - numbr of colors
 - stray flames

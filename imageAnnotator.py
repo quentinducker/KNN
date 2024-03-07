@@ -72,9 +72,3 @@ for index, sample in enumerate(samples):
     print()
 
     img.close()
-
-# make csv's from the dataframes store them in the right directory
-
-
-allImgData.to_csv(r'/Users/quentinducker/Documents/Spring 2024/ITS365/KNN Project/KNN/ImageCsv/imgData.csv')
-allImgFeatures.to_csv(r'/Users/quentinducker/Documents/Spring 2024/ITS365/KNN Project/KNN/ImageFeatures/imgFeatures.csv')
