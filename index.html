@@ -71,13 +71,16 @@
                     from js import console
                     from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-                 
+
                     ###########################################
                     imageDataURL = 'https://quentinducker.github.io/KNN/ImageCsv/imgData.csv'
-                    pd_imgs_np_train_np = pd.read_csv( open_url(imageDataURL) ).to_numpy()
-        
+                    #imageDataURL = './ImageCsv/imgData.csv'
+                    pd_imgs_np_train_np = pd.read_csv( open_url(imageDataURL) ) .to_numpy()[:,1:]
+
                     imageFeatureURL = 'https://quentinducker.github.io/KNN/ImageFeatures/imgFeatures.csv'
-                    pd_conditions_train_np = pd.read_csv( open_url(imageFeatureURL) ).to_numpy()
+                    #imageFeatureURL = './ImageFeatures/imgFeatures.csv'
+                    pd_conditions_train_np = pd.read_csv( open_url(imageFeatureURL) ).to_numpy()[:,1:]
+
                     ######################################################
 
                     def euclidean_distance(v1, v2):
@@ -87,14 +90,20 @@
                     ######################################################
 
                     def predict(test_x):
-                    
+
                         distances = [ euclidean_distance(test_x, x )  for x in pd_conditions_train_np    ]
-                        k = 3
+                        k = 1
                         k_neighbor_indices = np.argsort(distances)[:k]
                         selected_imgs_to_avg = [ pd_imgs_np_train_np[i].reshape((360,360,4))  for i in k_neighbor_indices  ]
-                    
-                        avg_gen_img = np.mean( np.array(selected_imgs_to_avg))
+
+                        #print("sel img")
+                        #print(np.array(selected_imgs_to_avg).shape)
+
+                        avg_gen_img = np.mean( np.array(selected_imgs_to_avg), axis=0)
                         avg_gen_img = avg_gen_img.astype(int)
+
+                        #print("avg")
+                        #print(avg_gen_img.shape)
                         return avg_gen_img
 
                     ##################################################
@@ -114,20 +123,18 @@
                     ##################################################
 
                     def my_gen_function():
-                    
                         test_x = get_np_conditions_vector()
 
                         #####################################################
                         text1 = str(pd_conditions_train_np.shape)
-                        text2 = str(pd_ids_train_np.shape)
                         text3 = str(pd_imgs_np_train_np.shape)
                         text4 = str(test_x.shape)
-                        text = text1 + text2 + text3 + text4
-                        Element('test-output').element.innerText =  text   
+                        text = text1 + text3 + text4
+                        Element('test-output').element.innerText = text
                         #####################################################
-                        
+
                         generated_img = predict( test_x )
-                    
+
                         #####################################################          
                         test_x = test_x.astype(int)
                         str_conditions = np.array2string(test_x, precision=0, separator=',', suppress_small=True)
@@ -136,13 +143,15 @@
                         str_conditions = str_conditions.replace("]","")
                         #####################################################
 
+                        #print(generated_img.shape)
+
                         fig1, ax1 = plt.subplots()
                         plt.imshow(generated_img)                    
                         ax1.set_title(str_conditions)
 
-                        ## Element('mpl').element.innerText = ""        ## use this to not accumulate imgs
+                        Element('mpl').element.innerText = ""
                         display(fig1, target="mpl")
-                    
+
                         #####################################################
    
                 </script>
