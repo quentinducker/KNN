@@ -24,6 +24,9 @@
    
         <table>
             <tr>
+                <td> K </td>
+                <td> <input type="text" style="border:3px solid #F7730E;" value="2" id="K"/> </td>
+
                 <td> peaks </td>
                 <td> <input type="text" style="border:3px solid #F7730E;" value="2" id="peaksInput"/> </td>
 
@@ -92,7 +95,7 @@
                     def predict(test_x):
 
                         distances = [ euclidean_distance(test_x, x )  for x in pd_conditions_train_np    ]
-                        k = 1
+                        k = Element('K').element.value
                         k_neighbor_indices = np.argsort(distances)[:k]
                         selected_imgs_to_avg = [ pd_imgs_np_train_np[i].reshape((360,360,4))  for i in k_neighbor_indices  ]
 
