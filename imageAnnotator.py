@@ -18,6 +18,9 @@ imgFeaturesDataFrames = pd.DataFrame()
 
 for index, sample in enumerate(samples):
 
+    if sample.lower().find("ds_store") > 0:
+        continue
+
     # open image and make an array
     img = Image.open(f"{directory}/samples/{sample}")
     img = img.convert('RGBA')
